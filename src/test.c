@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include "gestion_clavier.h"
 
-int main()
+int test()
 {
 	char key;
 	
