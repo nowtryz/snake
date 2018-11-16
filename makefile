@@ -12,7 +12,7 @@ ODIR=bin
 LDIR=lib
 SDIR=src
 
-DEPS := $(wildcard ${INCDIR}/*.c)
+DEPS := $(wildcard *.h)
 
 SRCS := $(wildcard ${SDIR}/*.c)
 VENDORS := $(wildcard ${LDIR}/*.c)
