@@ -1,22 +1,16 @@
-INCDIR =include
+INCDIR = include src
 ODIR=bin
 LDIR=lib
 SDIR=src
 
 CC=gcc
-CFLAGS=-I$(INCDIR) -Wall
+CFLAGS= $(INCDIR:%=-I%) -Wall
 LIBS=-lm
 
-INCDIR =include
-ODIR=bin
-LDIR=lib
-SDIR=src
-
-DEPS := $(wildcard *.h)
-
-SRCS := $(wildcard ${SDIR}/*.c)
-VENDORS := $(wildcard ${LDIR}/*.c)
-BINS := $(SRCS:${SDIR}/%.c=%.o) $(VENDORS:${LDIR}/%.c=%.o)
+DEPS= $(wildcard *.h)
+SRCS= $(wildcard ${SDIR}/*.c)
+VENDORS= $(wildcard ${LDIR}/*.c)
+BINS = $(SRCS:${SDIR}/%.c=%.o) $(VENDORS:${LDIR}/%.c=%.o)
 
 
 
@@ -36,9 +30,11 @@ snake: $(BINS)
 .PHONY: clean list
 
 list:
+	@echo INCDIR: ${INCDIR}
+	@echo CFLAGS: ${CFLAGS}
 	@echo SRC: ${SRCS}
 	@echo VENDORS: ${VENDORS}
-	@echo SRC: ${BINS}
+	@echo BINS: ${BINS}
 
 
 clean:

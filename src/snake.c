@@ -1,9 +1,6 @@
-#include <stdio.h>
-
-#include "gestion_clavier.h"
+#include <test.h>
 
 int main(int argc, char const *argv[])
 {
-    printf("test\n");
-    return 0;
+    return test();
 }

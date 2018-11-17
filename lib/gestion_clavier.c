@@ -4,7 +4,7 @@
  * Email : fabien.calcado@isty.uvsq.fr
  * */
 
-#include "gestion_clavier.h"
+#include <gestion_clavier.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <termios.h>
