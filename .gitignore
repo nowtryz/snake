@@ -2,6 +2,7 @@
 *.d
 
 # Object files
+bin/
 *.o
 *.ko
 *.obj
@@ -35,7 +36,7 @@
 *.i*86
 *.x86_64
 *.hex
-bin/
+/snake
 
 # Debug files
 *.dSYM/
