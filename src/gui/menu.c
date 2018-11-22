@@ -2,11 +2,14 @@
 #include <couleur_console.h>
 #include <utils/constants.h>
 
+static void print_menu();
+static void snake_print_menu_item(int select_condition, char* text);
+
 static int selected;
 
 int snake_game_menu()
 {
-    selected = START_NEW_GAME;
+    int selected = selected = START_NEW_GAME;
     print_menu();
 
     return STOP_PLAYING;
