@@ -1,26 +1,25 @@
-INCDIR := include src lib
+INCDIR = include $(LDIR)
+CC    :=gcc
+CFLAGS = $(addprefix -I,$(INCDIR)) -Wall $(LIBS)
+LIBS  :=-lm
+
 ODIR :=bin
 LDIR :=lib
 SDIR :=src
 
-CC     :=gcc
-CFLAGS := $(addprefix -I,$(INCDIR)) -Wall
-LIBS   :=-lm
 
-DEPS    := $(shell find ./ -type f -name '*.h')
+DEPS    := $(shell find $(INCDIR:%=%/) -type f -name '*.h')
 SRCS    := $(shell find ${SDIR}/ -type f -name '*.c')
 VENDORS := $(shell find ${LDIR}/ -type f -name '*.c')
 BINS    := $(SRCS:${SDIR}/%.c=%.o) $(VENDORS:${LDIR}/%.c=%.o)
 
+vpath %.c $(SDIR) $(LDIR)
+vpath %.o $(ODIR)
+vpath %.h $(INCDIR)
 
-
-
-%.o: ${SDIR}/%.c $(DEPS)
-	@echo "Source: Compiling $< to ${ODIR}/$@..."
-	@${CC} -c -o $(ODIR)/$@ $< $(CFLAGS)
-
-%.o: ${LDIR}/%.c $(DEPS)
-	@echo "Librairy: Compiling $< to ${ODIR}/$@..."
+%.o: %.c $(DEPS)
+	@echo "Compiling $< to ${ODIR}/$@..."
+	@mkdir -p $(ODIR)/$(@D)
 	@${CC} -c -o $(ODIR)/$@ $< $(CFLAGS)
 
 snake: $(BINS)
@@ -32,7 +31,7 @@ snake: $(BINS)
 list:
 	@echo INCDIR: ${INCDIR}
 	@echo CFLAGS: ${CFLAGS}
-	@echo DEPS:
+	@echo DEPS: in $(INCDIR:%=%/)
 	@printf " $(DEPS:%=  %\n)"
 	@echo SRC:
 	@printf " $(SRCS:%=  %\n)"
