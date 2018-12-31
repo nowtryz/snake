@@ -55,3 +55,18 @@ dkms.conf
 
 # VS code
 .vscode/
+
+# Eclipse
+.metadata
+bin/
+tmp/
+*.tmp
+*.bak
+*.swp
+*~.nib
+local.properties
+.settings/
+.loadpath
+.recommenders
+.cproject
+.project
